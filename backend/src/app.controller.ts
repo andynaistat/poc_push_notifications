@@ -29,6 +29,7 @@ export class AppController {
     const payload = JSON.stringify({
       title: '🎉 ¡Notificación recibida!',
       body: 'Este es un mensaje de prueba desde el frontend.',
+      url: 'https://andynaistat.github.io/poc_push_notifications/',
     });
 
     subscriptions.forEach((sub) => {

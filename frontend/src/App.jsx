@@ -17,7 +17,7 @@ async function subscribe() {
 
   console.log('Suscripción creada:', subscription);
 
-  await fetch('http://localhost:3000/subscribe', {
+  await fetch('https://4236-2800-a4-c1ef-9000-7859-52b0-3459-457b.ngrok-free.app/subscribe', {
     method: 'POST',
     body: JSON.stringify(subscription),
     headers: {
@@ -48,7 +48,7 @@ function urlBase64ToUint8Array(base64String) {
 
 async function sendTestNotification() {
   try {
-    const res = await fetch('http://localhost:3000/send', {
+    const res = await fetch('https://4236-2800-a4-c1ef-9000-7859-52b0-3459-457b.ngrok-free.app/send', {
       method: 'POST',
     });
 

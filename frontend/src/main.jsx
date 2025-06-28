@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').then(() => {
+  navigator.serviceWorker.register('/poc_push_notifications/sw.js').then(() => {
     console.log('Service Worker registered');
   });
 }
