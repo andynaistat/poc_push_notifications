@@ -1,29 +1,33 @@
-self.addEventListener('notificationclick', (event) => {
-  event.notification.close();
+self.addEventListener('push', (event) => {
+  console.log('📬 Push recibido:', event);
 
-  const urlToOpen = event.notification.data?.url || 'https://andynaistat.github.io/poc_push_notifications/';
+  const data = event.data?.json() || {
+    title: 'Notificación',
+    body: 'Contenido vacío',
+    url: 'https://andynaistat.github.io/poc_push_notifications/',
+  };
 
-  // Si se hizo clic en una acción específica
-  if (event.action === 'open') {
-    event.waitUntil(
-      clients.openWindow(urlToOpen)
-    );
-    return;
-  }
+  const options = {
+    body: data.body,
+    icon: '/poc_push_notifications/icon.png',  // Ajusta ruta a tu icono
+    badge: '/poc_push_notifications/icon.png',
+    vibrate: [100, 50, 100],
+    tag: 'push-demo',
+    data: {
+      url: data.url,
+    },
+    actions: [
+      {
+        action: 'open',
+        title: 'Abrir sitio',
+      },
+    ],
+  };
 
-  // Si se hizo clic en el cuerpo de la notificación
   event.waitUntil(
-    clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
-      for (const client of clientList) {
-        if (client.url.startsWith(urlToOpen) && 'focus' in client) {
-          return client.focus();
-        }
-      }
-      return clients.openWindow(urlToOpen);
-    })
+    self.registration.showNotification(data.title, options)
   );
 });
-
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
