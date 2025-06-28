@@ -33,7 +33,7 @@ self.addEventListener('push', (event) => {
 self.addEventListener('notificationclick', (event) => {
   event.notification.close(); // 👈 cerrar la notificación al hacer clic
 
-  const urlToOpen = event.notification.data?.url || '/';
+  const urlToOpen = event.notification.data?.url || 'https://andynaistat.github.io/poc_push_notifications/';
 
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
